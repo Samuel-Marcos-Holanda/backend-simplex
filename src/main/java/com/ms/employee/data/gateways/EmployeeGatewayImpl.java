@@ -1,5 +1,8 @@
 package com.ms.employee.data.gateways;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.gateways.EmployeeGateways;
 import com.ms.employee.data.entity.EmployeeEntity;
@@ -45,6 +48,17 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
         EmployeeEntity employee = repository.findByCpf(cpf);
         if (employee == null) return null;
         return mapper.toDomain(employee);
+    }
+
+    @Override
+    public List<Employee> getAll() {
+        List<Employee> listEmp = new ArrayList<>();
+        List<EmployeeEntity> temp = repository.findAll();
+        for(EmployeeEntity entity : temp)
+        {
+            listEmp.add(mapper.toDomain(entity));
+        }
+        return listEmp;
     }
     
 }

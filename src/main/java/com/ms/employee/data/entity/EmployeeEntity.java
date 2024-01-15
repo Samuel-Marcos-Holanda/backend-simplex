@@ -20,6 +20,9 @@ public class EmployeeEntity {
     private String name;
     private Integer salary;
     private String role;
+    
+    public EmployeeEntity() {
+    }
 
     public EmployeeEntity(Long cpf, String name, Integer salary, String role) {
         this.cpf = cpf;
