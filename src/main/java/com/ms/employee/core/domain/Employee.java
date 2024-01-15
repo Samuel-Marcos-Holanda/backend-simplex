@@ -14,9 +14,9 @@ public class Employee {
     private Long cpf;
     private String name;
     private Integer salary;
-    private String role;
+    private Role role;
 
-    public Employee(Long cpf, String name, Integer salary, String role) {
+    public Employee(Long cpf, String name, Integer salary, Role role) {
         this.cpf = cpf;
         this.name = name;
         this.salary = salary;
@@ -27,6 +27,6 @@ public class Employee {
         this.cpf = cEmployeeDTO.cpf();
         this.name = cEmployeeDTO.name();
         this.salary = cEmployeeDTO.salary();
-        this.role = cEmployeeDTO.role();
+        this.role = Role.valueOf(cEmployeeDTO.role().toUpperCase());
     }
 }

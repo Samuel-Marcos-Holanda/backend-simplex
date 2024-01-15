@@ -1,5 +1,6 @@
 package com.ms.employee.data.entity;
 
+import com.ms.employee.core.domain.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,6 +9,7 @@ import com.ms.employee.core.DTO.EmployeeDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
@@ -19,12 +21,12 @@ public class EmployeeEntity {
     private Long cpf;
     private String name;
     private Integer salary;
-    private String role;
+    private Role role;
     
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(Long cpf, String name, Integer salary, String role) {
+    public EmployeeEntity(Long cpf, String name, Integer salary, Role role) {
         this.cpf = cpf;
         this.name = name;
         this.salary = salary;
@@ -35,6 +37,6 @@ public class EmployeeEntity {
         this.cpf = cEmployeeDTO.cpf();
         this.name = cEmployeeDTO.name();
         this.salary = cEmployeeDTO.salary();
-        this.role = cEmployeeDTO.role();
+        this.role = Role.valueOf(cEmployeeDTO.role().toUpperCase());
     }
 }
