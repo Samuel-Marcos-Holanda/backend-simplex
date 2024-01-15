@@ -1,5 +1,6 @@
 package com.ms.employee.infra.main;
 
+import com.ms.employee.core.useCases.GetAllEmployeesInteractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,6 +23,11 @@ public class EmployeeConfig {
     @Bean
     GetEmployeeInteractor getEmployeeInteractor(EmployeeGateways gateway) {
         return new GetEmployeeInteractor(gateway);
+    }
+
+    @Bean
+    GetAllEmployeesInteractor getAllEmployeesInteractor(EmployeeGateways gateway) {
+        return new GetAllEmployeesInteractor(gateway);
     }
 
     @Bean
