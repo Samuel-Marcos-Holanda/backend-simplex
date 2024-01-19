@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.ms.employee.core.gateways.EmployeeGateways;
 import com.ms.employee.core.useCases.CreateEmployeeInteractor;
 import com.ms.employee.core.useCases.GetEmployeeInteractor;
+import com.ms.employee.core.useCases.UpdateEmployeeInteractor;
 import com.ms.employee.data.gateways.EmployeeGatewayImpl;
 import com.ms.employee.data.mappers.EmployeeMapper;
 import com.ms.employee.data.repositories.EmployeeRepository;
@@ -18,6 +19,12 @@ public class EmployeeConfig {
     CreateEmployeeInteractor createEmployeeInteractor(EmployeeGateways gateway)
     {
         return new CreateEmployeeInteractor(gateway);
+    }
+
+    @Bean
+    UpdateEmployeeInteractor updateEmployeeInteractor(EmployeeGateways gateway)
+    {
+        return new UpdateEmployeeInteractor(gateway);
     }
 
     @Bean

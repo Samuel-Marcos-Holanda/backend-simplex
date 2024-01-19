@@ -3,6 +3,11 @@ package com.ms.employee.data.gateways;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mongodb.lang.NonNull;
+import com.ms.employee.core.DTO.EmployeeDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.gateways.EmployeeGateways;
 import com.ms.employee.data.entity.EmployeeEntity;
@@ -25,10 +30,19 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
         return mapper.toDomain(repository.save(employeeEntity));
     }
 
+    @Transactional
     @Override
-    public Employee editEmployee(Employee employee) {
-        EmployeeEntity employeeEntity = mapper.toEntity(employee);
-        return mapper.toDomain(repository.save(employeeEntity));
+    public Employee updateEmployee(Long cpfToEdit, @NonNull EmployeeDTO employeeDTO) {
+        if (employeeDTO == null || cpfToEdit == null) {
+            return null;
+        }
+        EmployeeEntity employee = repository.findByCpf(cpfToEdit);
+		if(employee == null) {
+			return null;
+		}
+		BeanUtils.copyProperties(employeeDTO, employee);
+        repository.save(employee);
+        return mapper.toDomain(employee);
     }
 
     @Override
