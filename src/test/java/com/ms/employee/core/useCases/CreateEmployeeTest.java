@@ -14,7 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.ms.employee.core.DTO.EmployeeDTO;
 import com.ms.employee.core.domain.Employee;
-import com.ms.employee.core.exceptions.AlreadyRegisteredCpf;
+import com.ms.employee.core.exceptions.AlreadyRegisteredCpfException;
 import com.ms.employee.core.gateways.EmployeeGateways;
 
 public class CreateEmployeeTest {
@@ -46,6 +46,6 @@ public class CreateEmployeeTest {
         Employee expected = new Employee(employeeDTO);
         when(gateway.getByCpf(anyLong())).thenReturn(expected);
 
-        assertThrows(AlreadyRegisteredCpf.class, () -> interactor.execute(employeeDTO));
+        assertThrows(AlreadyRegisteredCpfException.class, () -> interactor.execute(employeeDTO));
     }
 }

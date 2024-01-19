@@ -2,7 +2,7 @@ package com.ms.employee.core.useCases;
 
 import com.ms.employee.core.DTO.EmployeeDTO;
 import com.ms.employee.core.domain.Employee;
-import com.ms.employee.core.exceptions.AlreadyRegisteredCpf;
+import com.ms.employee.core.exceptions.AlreadyRegisteredCpfException;
 import com.ms.employee.core.gateways.EmployeeGateways;
 
 public class CreateEmployeeInteractor extends BaseEmployeeInteractor {
@@ -14,7 +14,7 @@ public class CreateEmployeeInteractor extends BaseEmployeeInteractor {
     {
         Employee toCreateEmployee = new Employee(employeeDTO);
 
-        if (gateway.getByCpf(toCreateEmployee.getCpf()) != null) throw new AlreadyRegisteredCpf();
+        if (gateway.getByCpf(toCreateEmployee.getCpf()) != null) throw new AlreadyRegisteredCpfException();
         return gateway.createEmployee(toCreateEmployee);
     }
 }
