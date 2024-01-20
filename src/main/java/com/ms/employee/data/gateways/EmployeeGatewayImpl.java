@@ -2,6 +2,7 @@ package com.ms.employee.data.gateways;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +63,13 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
         EmployeeEntity employee = repository.findByCpf(cpf);
         if (employee == null) return null;
         return mapper.toDomain(employee);
+    }
+
+    @Override
+    public Employee getByEmail(String email) {
+        Optional<EmployeeEntity> employeeOptional = repository.findByEmail(email);
+        if(employeeOptional.isEmpty()) return null;
+        return mapper.toDomain(employeeOptional.get());
     }
 
     @Override

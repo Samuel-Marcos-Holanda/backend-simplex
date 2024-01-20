@@ -1,7 +1,7 @@
 package com.ms.employee.core.useCases;
 
 import com.ms.employee.core.domain.Employee;
-import com.ms.employee.core.exceptions.EmployeeNotFoundException;
+import com.ms.employee.core.exceptions.notFound.EmployeeNotFoundException;
 import com.ms.employee.core.gateways.EmployeeGateways;
 
 public class GetEmployeeInteractor extends BaseEmployeeInteractor{

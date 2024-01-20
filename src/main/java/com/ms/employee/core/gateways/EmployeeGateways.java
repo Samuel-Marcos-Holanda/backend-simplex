@@ -11,5 +11,6 @@ public interface EmployeeGateways {
     public boolean removeEmployee(Employee employee);
     public Employee getById(String id);
     public Employee getByCpf(Long cpf);
+    public Employee getByEmail(String email);
     public List<Employee> getAll();
 }

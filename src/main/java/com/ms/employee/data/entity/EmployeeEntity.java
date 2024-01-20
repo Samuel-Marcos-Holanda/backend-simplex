@@ -19,15 +19,17 @@ public class EmployeeEntity {
     private String id;
     private Long cpf;
     private String name;
+    private String email;
     private Integer salary;
     private Role role;
     
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(Long cpf, String name, Integer salary, Role role) {
+    public EmployeeEntity(Long cpf, String name, String email, Integer salary, Role role) {
         this.cpf = cpf;
         this.name = name;
+        this.email = email;
         this.salary = salary;
         this.role = role;
     }
@@ -37,5 +39,6 @@ public class EmployeeEntity {
         this.name = cEmployeeDTO.name();
         this.salary = cEmployeeDTO.salary();
         this.role = Role.valueOf(cEmployeeDTO.role().toUpperCase());
+        this.email = cEmployeeDTO.email();
     }
 }
