@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    volumes:
+      - ./data:/data/mongodb
+    ports:
+      - 27070:27017
+
+  employee-ms:
+    depends_on:
+      - mongodb
+    container_name: employee-ms
+    build: .
+    ports:
+      - 8080:8080
