@@ -2,14 +2,11 @@ package com.ms.employee.core.domain;
 
 import com.ms.employee.core.DTO.EmployeeRequestDTO;
 
-import com.ms.employee.core.exceptions.others.InvalidEmailFormatException;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class Employee {
     private String id;
     private Long cpf;
@@ -20,6 +17,19 @@ public class Employee {
     private Benefit[] benefits;
     private String employerId;
     private Role role;
+
+    public Employee(String id, Long cpf, String name, Float salary, String email, String password, Benefit[] benefits,
+            String employerId, Role role) {
+        this.id = id;
+        this.cpf = cpf;
+        this.name = name;
+        this.salary = salary;
+        this.email = email;
+        this.password = password;
+        this.benefits = benefits;
+        this.employerId = employerId;
+        this.role = role;
+    }
 
     public Employee(Long cpf, String name, String email, String password, Benefit[] benefits, String employerId, Float salary, Role role) {
         this.cpf = cpf;

@@ -17,8 +17,6 @@ public class CreateEmployeeInteractor extends BaseEmployeeInteractor {
     {
         Employee toCreateEmployee = new Employee(employeeDTO);
         if(!toCreateEmployee.getEmail().contains("@")) throw new InvalidEmailFormatException();
-
-
         if (gateway.getByCpf(toCreateEmployee.getCpf()) != null) throw new AlreadyRegisteredCpfException();
         if (gateway.getByEmail(toCreateEmployee.getEmail()) != null) throw new AlreadyRegisteredEmailException();
         return new EmployeeResponseDTO(gateway.createEmployee(toCreateEmployee));

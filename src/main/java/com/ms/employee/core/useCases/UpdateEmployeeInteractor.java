@@ -11,9 +11,9 @@ public class UpdateEmployeeInteractor extends BaseEmployeeInteractor {
         super(gateway);
     }
     
-    public Employee execute(Long cpfToEdit, EmployeeRequestDTO employeeDTO) throws Exception
+    public Employee execute(String id, EmployeeRequestDTO employeeDTO) throws Exception
     {
-        Employee emp = gateway.updateEmployee(cpfToEdit, employeeDTO);
+        Employee emp = gateway.updateEmployee(id, employeeDTO);
         if (emp == null) throw new BadUpdateException();
         return emp;
     }

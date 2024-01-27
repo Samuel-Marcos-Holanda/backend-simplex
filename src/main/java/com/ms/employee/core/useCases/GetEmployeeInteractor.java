@@ -10,9 +10,9 @@ public class GetEmployeeInteractor extends BaseEmployeeInteractor{
         super(gateway);
     }
 
-    public Employee execute(Long cpf) throws EmployeeNotFoundException
+    public Employee execute(String id) throws EmployeeNotFoundException
     {
-        Employee emp = gateway.getByCpf(cpf);
+        Employee emp = gateway.getById(id);
         if (emp == null) throw new EmployeeNotFoundException();
         return emp;
     }
