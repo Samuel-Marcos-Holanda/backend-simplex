@@ -1,3 +1,6 @@
 package com.ms.employee.core.DTO;
 
-public record EmployeeDTO(long cpf, String name, String email, int salary, String role) {}
+import com.ms.employee.core.domain.Benefit;
+
+public record EmployeeDTO(Long cpf, String name, String email, String password, Benefit[] benefits,
+ String employerId, Float salary, String role) {}

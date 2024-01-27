@@ -1,5 +1,6 @@
 package com.ms.employee.data.entity;
 
+import com.ms.employee.core.domain.Benefit;
 import com.ms.employee.core.domain.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,18 +21,25 @@ public class EmployeeEntity {
     private Long cpf;
     private String name;
     private String email;
-    private Integer salary;
+    private String password;
+    private Benefit[] benefits;
+    private String employerId;
+    private Float salary;
     private Role role;
     
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(Long cpf, String name, String email, Integer salary, Role role) {
+    public EmployeeEntity(Long cpf, String name, String email, String password, Benefit[] benefits, String employerId,
+     Float salary, Role role) {
         this.cpf = cpf;
         this.name = name;
         this.email = email;
         this.salary = salary;
         this.role = role;
+        this.benefits = benefits;
+        this.password = password;
+        this.employerId = employerId;
     }
 
     public EmployeeEntity(EmployeeDTO cEmployeeDTO) {
@@ -40,5 +48,8 @@ public class EmployeeEntity {
         this.salary = cEmployeeDTO.salary();
         this.role = Role.valueOf(cEmployeeDTO.role().toUpperCase());
         this.email = cEmployeeDTO.email();
+        this.benefits = cEmployeeDTO.benefits();
+        this.password = cEmployeeDTO.password();
+        this.employerId = cEmployeeDTO.employerId();
     }
 }
