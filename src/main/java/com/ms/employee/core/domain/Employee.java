@@ -1,6 +1,6 @@
 package com.ms.employee.core.domain;
 
-import com.ms.employee.core.DTO.EmployeeDTO;
+import com.ms.employee.core.DTO.EmployeeRequestDTO;
 
 import com.ms.employee.core.exceptions.others.InvalidEmailFormatException;
 import lombok.AllArgsConstructor;
@@ -32,7 +32,7 @@ public class Employee {
         this.employerId = employerId;
     }
 
-    public Employee(EmployeeDTO cEmployeeDTO) {
+    public Employee(EmployeeRequestDTO cEmployeeDTO) {
         this.cpf = cEmployeeDTO.cpf();
         this.name = cEmployeeDTO.name();
         this.salary = cEmployeeDTO.salary();

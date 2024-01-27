@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mongodb.lang.NonNull;
-import com.ms.employee.core.DTO.EmployeeDTO;
+import com.ms.employee.core.DTO.EmployeeRequestDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.gateways.EmployeeGateways;
 import com.ms.employee.data.entity.EmployeeEntity;
@@ -33,7 +33,7 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
 
     @Transactional
     @Override
-    public Employee updateEmployee(Long cpfToEdit, @NonNull EmployeeDTO employeeDTO) {
+    public Employee updateEmployee(Long cpfToEdit, @NonNull EmployeeRequestDTO employeeDTO) {
         if (employeeDTO == null || cpfToEdit == null) {
             return null;
         }

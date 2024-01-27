@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ms.employee.core.DTO.EmployeeDTO;
+import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.EmployeeResponseDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.useCases.CreateEmployeeInteractor;
 import com.ms.employee.core.useCases.GetEmployeeInteractor;
@@ -40,9 +41,9 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees() throws Exception
+    public ResponseEntity<List<EmployeeResponseDTO>> getAllEmployees() throws Exception
     {
-        List<Employee> listEmp = getAllInteractor.execute();
+        List<EmployeeResponseDTO> listEmp = getAllInteractor.execute();
         return new ResponseEntity<>(listEmp, HttpStatus.OK);
     }
 
@@ -53,14 +54,14 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception
+    public ResponseEntity<EmployeeResponseDTO> createEmployee(@RequestBody EmployeeRequestDTO employeeDTO) throws Exception
     {
-        Employee emp = createInteractor.execute(employeeDTO);
+        EmployeeResponseDTO emp = createInteractor.execute(employeeDTO);
         return new ResponseEntity<>(emp, HttpStatus.CREATED);
     }
     
     @PutMapping("/{cpf}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable(value="cpf") Long cpf, @RequestBody EmployeeDTO employeeDTO) throws Exception {
+	public ResponseEntity<Employee> updateEmployee(@PathVariable(value="cpf") Long cpf, @RequestBody EmployeeRequestDTO employeeDTO) throws Exception {
         Employee emp = updateInteractor.execute(cpf, employeeDTO);
         return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
