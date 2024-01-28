@@ -1,51 +1,60 @@
 package com.ms.employee.core.useCases;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertThrows;
-// import static org.mockito.ArgumentMatchers.any;
-// import static org.mockito.ArgumentMatchers.anyLong;
-// import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-// import com.ms.employee.core.DTO.EmployeeDTO;
-// import com.ms.employee.core.domain.Employee;
-// import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredCpfException;
-// import com.ms.employee.core.gateways.EmployeeGateways;
+import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.EmployeeResponseDTO;
+import com.ms.employee.core.domain.Benefit;
+import com.ms.employee.core.domain.Employee;
+import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredCpfException;
+import com.ms.employee.core.gateways.EmployeeGateways;
 
 public class CreateEmployeeTest {
-    // @InjectMocks
-    // private CreateEmployeeInteractor interactor;
+    @InjectMocks
+    private CreateEmployeeInteractor interactor;
 
-    // @Mock
-    // private EmployeeGateways gateway;
+    @Mock
+    private EmployeeGateways gateway;
 
-    // @BeforeEach
-    // public void init()
-    // {
-    //     MockitoAnnotations.openMocks(this);
-    // }
+    @BeforeEach
+    public void init()
+    {
+        MockitoAnnotations.openMocks(this);
+    }
 
-    // @Test
-    // public void createEmployeeSuccess() throws Exception {
-    //     EmployeeDTO employeeDTO = new EmployeeDTO(123456789, "Samuel", 130000, "Limpador De Pizo Kkk");
-    //     Employee toCreate = new Employee(employeeDTO);
-    //     when(gateway.getByCpf(anyLong())).thenReturn(null);
-    //     when(gateway.createEmployee(any(Employee.class))).thenReturn(toCreate);
+    @Test
+    public void createEmployeeSuccess() throws Exception {
+        Benefit[] benefits = new Benefit[] {new Benefit("vale-alimentação", "pra encher o buxo", 600f)};
+        EmployeeRequestDTO employeeRequestDTO = new EmployeeRequestDTO(12345678900l, "Samuel", "samukaboydoido@gmail.com", 
+        "1234pwd", benefits, "aaaa-aaaa-aaaa-aaa", 1200f, "common");
 
-    //     assertEquals(toCreate, interactor.execute(employeeDTO));
-    // }
+        Employee toCreate = new Employee(employeeRequestDTO);
+        when(gateway.getByCpf(toCreate.getCpf())).thenReturn(null);
+        when(gateway.createEmployee(any(Employee.class))).thenReturn(toCreate);
 
-    // @Test
-    // public void createEmployeeWithSameCpf() throws Exception {
-    //     EmployeeDTO employeeDTO = new EmployeeDTO(123456789, "Samuel", 130000, "Limpador De Pizo Kkk");
-    //     Employee expected = new Employee(employeeDTO);
-    //     when(gateway.getByCpf(anyLong())).thenReturn(expected);
+        EmployeeResponseDTO expected = new EmployeeResponseDTO(toCreate);
+        assertEquals(expected, interactor.execute(employeeRequestDTO));
+    }
 
-    //     assertThrows(AlreadyRegisteredCpfException.class, () -> interactor.execute(employeeDTO));
-    // }
+    @Test
+    public void createEmployeeWithSameCpf() throws Exception {
+        Benefit[] benefits = new Benefit[] {new Benefit("vale-alimentação", "pra encher o buxo", 600f)};
+        EmployeeRequestDTO employeeRequestDTO = new EmployeeRequestDTO(12345678900l, "Samuel", "samukaboydoido@gmail.com", 
+        "1234pwd", benefits, "aaaa-aaaa-aaaa-aaa", 1200f, "common");    
+
+        Employee expected = new Employee(employeeRequestDTO);
+        when(gateway.getByCpf(expected.getCpf())).thenReturn(expected);
+
+        assertThrows(AlreadyRegisteredCpfException.class, () -> interactor.execute(employeeRequestDTO));
+    }
 }
