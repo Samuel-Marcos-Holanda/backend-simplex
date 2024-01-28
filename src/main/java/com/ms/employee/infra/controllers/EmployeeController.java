@@ -6,6 +6,7 @@ import com.ms.employee.core.useCases.GetAllEmployeesInteractor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,9 +48,9 @@ public class EmployeeController {
         return new ResponseEntity<>(listEmp, HttpStatus.OK);
     }
 
-    @GetMapping("/{employeeCpf}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable(value = "employeeCpf") Long employeeCpf) throws Exception {
-        Employee emp = getInteractor.execute(employeeCpf);
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployee(@PathVariable(value = "id") String id) throws Exception {
+        Employee emp = getInteractor.execute(id);
         return new ResponseEntity<>(emp, HttpStatus.OK);
     }
 
@@ -60,9 +61,9 @@ public class EmployeeController {
         return new ResponseEntity<>(emp, HttpStatus.CREATED);
     }
     
-    @PutMapping("/{cpf}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable(value="cpf") Long cpf, @RequestBody EmployeeRequestDTO employeeDTO) throws Exception {
-        Employee emp = updateInteractor.execute(cpf, employeeDTO);
+    @PutMapping("/{id}")
+	public ResponseEntity<Employee> updateEmployee(@PathVariable(value="id") String id, @RequestBody EmployeeRequestDTO employeeDTO) throws Exception {
+        Employee emp = updateInteractor.execute(id, employeeDTO);
         return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
 }

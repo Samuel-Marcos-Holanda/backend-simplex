@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mongodb.lang.NonNull;
 import com.ms.employee.core.DTO.EmployeeRequestDTO;
 import com.ms.employee.core.domain.Employee;
+import com.ms.employee.core.exceptions.notFound.EmployeeNotFoundException;
 import com.ms.employee.core.gateways.EmployeeGateways;
 import com.ms.employee.data.entity.EmployeeEntity;
 import com.ms.employee.data.mappers.EmployeeMapper;
@@ -33,11 +34,11 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
 
     @Transactional
     @Override
-    public Employee updateEmployee(Long cpfToEdit, @NonNull EmployeeRequestDTO employeeDTO) {
-        if (employeeDTO == null || cpfToEdit == null) {
+    public Employee updateEmployee(String id, @NonNull EmployeeRequestDTO employeeDTO) {
+        if (employeeDTO == null || id == null) {
             return null;
         }
-        EmployeeEntity employee = repository.findByCpf(cpfToEdit);
+        EmployeeEntity employee = repository.findById(id).get();
 		if(employee == null) {
 			return null;
 		}
@@ -53,9 +54,10 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
     }
 
     @Override
-    public Employee getById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+    public Employee getById(String id) throws EmployeeNotFoundException {
+        EmployeeEntity emp = repository.findById(id).get();
+        if (emp == null) throw new EmployeeNotFoundException();
+        return mapper.toDomain(emp);
     }
 
     @Override
