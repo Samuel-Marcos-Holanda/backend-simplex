@@ -13,6 +13,8 @@ services:
     depends_on:
       - mongodb
     container_name: employee-ms
+    environment:
+      - MONGODB_HOST=mongodb
     build: .
     ports:
       - 8080:8080
