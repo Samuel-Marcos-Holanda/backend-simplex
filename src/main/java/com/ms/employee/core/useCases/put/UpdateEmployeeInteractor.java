@@ -1,9 +1,10 @@
-package com.ms.employee.core.useCases;
+package com.ms.employee.core.useCases.put;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.others.BadUpdateException;
 import com.ms.employee.core.gateways.EmployeeGateways;
+import com.ms.employee.core.useCases.BaseEmployeeInteractor;
 
 public class UpdateEmployeeInteractor extends BaseEmployeeInteractor {
 

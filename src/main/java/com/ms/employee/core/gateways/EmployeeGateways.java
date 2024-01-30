@@ -2,7 +2,7 @@ package com.ms.employee.core.gateways;
 
 import java.util.List;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.notFound.EmployeeNotFoundException;
 

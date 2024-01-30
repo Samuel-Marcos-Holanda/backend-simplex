@@ -1,11 +1,12 @@
-package com.ms.employee.core.useCases;
+package com.ms.employee.core.useCases.delete;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.others.InvalidEmailFormatException;
 import com.ms.employee.core.gateways.EmployeeGateways;
+import com.ms.employee.core.useCases.BaseEmployeeInteractor;
 
-public class RemoveEmployeeInteractor extends BaseEmployeeInteractor{
+public class RemoveEmployeeInteractor extends BaseEmployeeInteractor {
 
     public RemoveEmployeeInteractor(EmployeeGateways gateway) {
         super(gateway);

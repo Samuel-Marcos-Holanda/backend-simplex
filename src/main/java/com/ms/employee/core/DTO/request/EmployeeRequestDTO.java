@@ -1,4 +1,4 @@
-package com.ms.employee.core.DTO;
+package com.ms.employee.core.DTO.request;
 
 import com.ms.employee.core.domain.Benefit;
 

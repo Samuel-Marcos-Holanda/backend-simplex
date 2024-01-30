@@ -5,14 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import com.ms.employee.core.useCases.post.CreateEmployeeInteractor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
-import com.ms.employee.core.DTO.EmployeeResponseDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.response.EmployeeResponseDTO;
 import com.ms.employee.core.domain.Benefit;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredCpfException;

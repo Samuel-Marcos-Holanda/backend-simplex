@@ -1,12 +1,13 @@
-package com.ms.employee.core.useCases;
+package com.ms.employee.core.useCases.post;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
-import com.ms.employee.core.DTO.EmployeeResponseDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.response.EmployeeResponseDTO;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredCpfException;
 import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredEmailException;
 import com.ms.employee.core.exceptions.others.InvalidEmailFormatException;
 import com.ms.employee.core.gateways.EmployeeGateways;
+import com.ms.employee.core.useCases.BaseEmployeeInteractor;
 
 public class CreateEmployeeInteractor extends BaseEmployeeInteractor {
     public CreateEmployeeInteractor(EmployeeGateways gateway) {

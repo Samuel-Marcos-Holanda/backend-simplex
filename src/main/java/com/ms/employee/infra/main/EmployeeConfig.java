@@ -1,13 +1,13 @@
 package com.ms.employee.infra.main;
 
-import com.ms.employee.core.useCases.GetAllEmployeesInteractor;
+import com.ms.employee.core.useCases.get.GetAllEmployeesInteractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.ms.employee.core.gateways.EmployeeGateways;
-import com.ms.employee.core.useCases.CreateEmployeeInteractor;
-import com.ms.employee.core.useCases.GetEmployeeInteractor;
-import com.ms.employee.core.useCases.UpdateEmployeeInteractor;
+import com.ms.employee.core.useCases.post.CreateEmployeeInteractor;
+import com.ms.employee.core.useCases.get.GetEmployeeInteractor;
+import com.ms.employee.core.useCases.put.UpdateEmployeeInteractor;
 import com.ms.employee.data.gateways.EmployeeGatewayImpl;
 import com.ms.employee.data.mappers.EmployeeMapper;
 import com.ms.employee.data.repositories.EmployeeRepository;

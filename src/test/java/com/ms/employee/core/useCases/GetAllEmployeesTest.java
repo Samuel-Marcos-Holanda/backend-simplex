@@ -7,13 +7,14 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ms.employee.core.useCases.get.GetAllEmployeesInteractor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.ms.employee.core.DTO.EmployeeResponseDTO;
+import com.ms.employee.core.DTO.response.EmployeeResponseDTO;
 import com.ms.employee.core.domain.Benefit;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.domain.Role;
