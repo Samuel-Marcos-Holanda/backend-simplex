@@ -1,6 +1,6 @@
 package com.ms.employee.core.domain;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
 
 import lombok.Getter;
 import lombok.Setter;

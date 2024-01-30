@@ -1,10 +1,11 @@
-package com.ms.employee.core.useCases;
+package com.ms.employee.core.useCases.get;
 
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.notFound.EmployeeNotFoundException;
 import com.ms.employee.core.gateways.EmployeeGateways;
+import com.ms.employee.core.useCases.BaseEmployeeInteractor;
 
-public class GetEmployeeInteractor extends BaseEmployeeInteractor{
+public class GetEmployeeInteractor extends BaseEmployeeInteractor {
 
     public GetEmployeeInteractor(EmployeeGateways gateway) {
         super(gateway);

@@ -5,7 +5,7 @@ import com.ms.employee.core.domain.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

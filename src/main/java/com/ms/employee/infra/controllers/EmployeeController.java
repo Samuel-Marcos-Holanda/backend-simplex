@@ -2,7 +2,7 @@ package com.ms.employee.infra.controllers;
 
 import java.util.List;
 
-import com.ms.employee.core.useCases.GetAllEmployeesInteractor;
+import com.ms.employee.core.useCases.get.GetAllEmployeesInteractor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ms.employee.core.DTO.EmployeeRequestDTO;
-import com.ms.employee.core.DTO.EmployeeResponseDTO;
+import com.ms.employee.core.DTO.request.EmployeeRequestDTO;
+import com.ms.employee.core.DTO.response.EmployeeResponseDTO;
 import com.ms.employee.core.domain.Employee;
-import com.ms.employee.core.useCases.CreateEmployeeInteractor;
-import com.ms.employee.core.useCases.GetEmployeeInteractor;
-import com.ms.employee.core.useCases.UpdateEmployeeInteractor;
+import com.ms.employee.core.useCases.post.CreateEmployeeInteractor;
+import com.ms.employee.core.useCases.get.GetEmployeeInteractor;
+import com.ms.employee.core.useCases.put.UpdateEmployeeInteractor;
 
 @RestController
 @RequestMapping("/employee")
