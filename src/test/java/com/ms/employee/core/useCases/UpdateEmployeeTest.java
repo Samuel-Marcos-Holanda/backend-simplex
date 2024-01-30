@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.ms.employee.core.gateways.EmployeeGateways;
 
-public class EditEmployeeTest {
+public class UpdateEmployeeTest {
     @InjectMocks
     private UpdateEmployeeInteractor interactor;
     
@@ -25,4 +25,5 @@ public class EditEmployeeTest {
     {
         MockitoAnnotations.openMocks(this);
     }
+
 }
