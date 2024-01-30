@@ -3,7 +3,6 @@ package com.ms.employee.core.useCases;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +16,8 @@ import com.ms.employee.core.DTO.EmployeeResponseDTO;
 import com.ms.employee.core.domain.Benefit;
 import com.ms.employee.core.domain.Employee;
 import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredCpfException;
+import com.ms.employee.core.exceptions.alreadyRegistered.AlreadyRegisteredEmailException;
+import com.ms.employee.core.exceptions.others.InvalidEmailFormatException;
 import com.ms.employee.core.gateways.EmployeeGateways;
 
 public class CreateEmployeeTest {
@@ -35,6 +36,7 @@ public class CreateEmployeeTest {
     @Test
     public void createEmployeeSuccess() throws Exception {
         Benefit[] benefits = new Benefit[] {new Benefit("vale-alimentação", "pra encher o buxo", 600f)};
+
         EmployeeRequestDTO employeeRequestDTO = new EmployeeRequestDTO(12345678900l, "Samuel", "samukaboydoido@gmail.com", 
         "1234pwd", benefits, "aaaa-aaaa-aaaa-aaa", 1200f, "common");
 
@@ -49,6 +51,7 @@ public class CreateEmployeeTest {
     @Test
     public void createEmployeeWithSameCpf() throws Exception {
         Benefit[] benefits = new Benefit[] {new Benefit("vale-alimentação", "pra encher o buxo", 600f)};
+
         EmployeeRequestDTO employeeRequestDTO = new EmployeeRequestDTO(12345678900l, "Samuel", "samukaboydoido@gmail.com", 
         "1234pwd", benefits, "aaaa-aaaa-aaaa-aaa", 1200f, "common");    
 
@@ -56,5 +59,28 @@ public class CreateEmployeeTest {
         when(gateway.getByCpf(expected.getCpf())).thenReturn(expected);
 
         assertThrows(AlreadyRegisteredCpfException.class, () -> interactor.execute(employeeRequestDTO));
+    }
+
+    @Test
+    public void createEmployeeWithSameEmail() throws Exception {
+        Benefit[] benefits = new Benefit[] {new Benefit("vale-alimentação", "pra encher o buxo", 600f)};
+
+        EmployeeRequestDTO employeeRequestDTO = new EmployeeRequestDTO(12345678900l, "Samuel", "samukaboydoido@gmail.com", 
+        "1234pwd", benefits, "aaaa-aaaa-aaaa-aaa", 1200f, "common");  
+
+        Employee expected = new Employee(employeeRequestDTO);
+        when(gateway.getByEmail(expected.getEmail())).thenReturn(expected);
+
+        assertThrows(AlreadyRegisteredEmailException.class, () -> interactor.execute(employeeRequestDTO));
+    }
+
+    @Test
+    public void createEmployeeWithInvalidEmail() throws Exception {
+        Benefit[] benefits = new Benefit[] {new Benefit("vale-alimentação", "pra encher o buxo", 600f)};
+
+        EmployeeRequestDTO employeeRequestDTO = new EmployeeRequestDTO(12345678900l, "Samuel", "samukaboydoidasdf", 
+        "1234pwd", benefits, "aaaa-aaaa-aaaa-aaa", 1200f, "common");  
+
+        assertThrows(InvalidEmailFormatException.class, () -> interactor.execute(employeeRequestDTO));
     }
 }
