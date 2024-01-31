@@ -8,8 +8,4 @@ spring:
       on-profile: deploy
   data:
     mongodb:
-      host: ${MONGODB_HOST:localhost}
-      database: ${MONGODB_DATABASE:employee}
-      username: ${MONGODB_USERNAME}
-      password: ${MONGODB_PASSWORD}
-
+      uri: mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST:localhost}/${MONGODB_DATABASE:employee}
