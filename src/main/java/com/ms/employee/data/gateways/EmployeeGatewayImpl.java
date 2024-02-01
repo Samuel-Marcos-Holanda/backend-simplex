@@ -34,13 +34,13 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
 
     @Transactional
     @Override
-    public Employee updateEmployee(String id, @NonNull EmployeeRequestDTO employeeDTO) {
+    public Employee updateEmployee(String id, @NonNull EmployeeRequestDTO employeeDTO) throws EmployeeNotFoundException {
         if (employeeDTO == null || id == null) {
             return null;
         }
         EmployeeEntity employee = repository.findById(id).get();
 		if(employee == null) {
-			return null;
+			throw new EmployeeNotFoundException();
 		}
 		BeanUtils.copyProperties(employeeDTO, employee);
         repository.save(employee);
@@ -48,7 +48,7 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
     }
 
     @Override
-    public boolean removeEmployee(Employee employee) {
+    public boolean removeEmployee(Employee employee) throws EmployeeNotFoundException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeEmployee'");
     }
