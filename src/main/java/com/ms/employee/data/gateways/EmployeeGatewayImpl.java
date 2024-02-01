@@ -55,9 +55,9 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
 
     @Override
     public Employee getById(String id) throws EmployeeNotFoundException {
-        EmployeeEntity emp = repository.findById(id).get();
-        if (emp == null) throw new EmployeeNotFoundException();
-        return mapper.toDomain(emp);
+        Optional<EmployeeEntity> empOptional = repository.findById(id);
+        if (empOptional.isEmpty()) throw new EmployeeNotFoundException();
+        return mapper.toDomain(empOptional.get());
     }
 
     @Override
