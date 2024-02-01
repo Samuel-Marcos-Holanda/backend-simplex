@@ -2,10 +2,12 @@ package com.ms.employee.infra.controllers;
 
 import java.util.List;
 
+import com.ms.employee.core.useCases.delete.RemoveEmployeeInteractor;
 import com.ms.employee.core.useCases.get.GetAllEmployeesInteractor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,16 +30,19 @@ public class EmployeeController {
     private final UpdateEmployeeInteractor updateInteractor;
     private final GetEmployeeInteractor getInteractor;
     private final GetAllEmployeesInteractor getAllInteractor;
+    private final RemoveEmployeeInteractor deleteEmployeeInteractor;
     
     public EmployeeController(
             CreateEmployeeInteractor createInteractor, 
             GetEmployeeInteractor getInteractor, 
             GetAllEmployeesInteractor getAllInteractor, 
-            UpdateEmployeeInteractor updateInteractor) {
+            UpdateEmployeeInteractor updateInteractor,
+            RemoveEmployeeInteractor deleteEmployeeInteractor) {
         this.createInteractor = createInteractor;
         this.getInteractor = getInteractor;
         this.updateInteractor = updateInteractor;
         this.getAllInteractor = getAllInteractor;
+        this.deleteEmployeeInteractor = deleteEmployeeInteractor;
     }
 
     @GetMapping
@@ -65,4 +70,10 @@ public class EmployeeController {
         Employee emp = updateInteractor.execute(id, employeeDTO);
         return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable(value="id") String id) throws Exception {
+        deleteEmployeeInteractor.execute(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

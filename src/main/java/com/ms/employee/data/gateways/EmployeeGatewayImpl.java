@@ -48,9 +48,9 @@ public class EmployeeGatewayImpl implements EmployeeGateways{
     }
 
     @Override
-    public boolean removeEmployee(Employee employee) throws EmployeeNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeEmployee'");
+    public boolean removeEmployee(String id) {
+        repository.deleteById(id);
+        return true;
     }
 
     @Override

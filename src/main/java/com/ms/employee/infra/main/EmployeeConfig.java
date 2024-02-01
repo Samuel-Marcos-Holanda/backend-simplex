@@ -1,5 +1,6 @@
 package com.ms.employee.infra.main;
 
+import com.ms.employee.core.useCases.delete.RemoveEmployeeInteractor;
 import com.ms.employee.core.useCases.get.GetAllEmployeesInteractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +36,11 @@ public class EmployeeConfig {
     @Bean
     GetAllEmployeesInteractor getAllEmployeesInteractor(EmployeeGateways gateway) {
         return new GetAllEmployeesInteractor(gateway);
+    }
+
+    @Bean
+    RemoveEmployeeInteractor deleteEmployeeInteractor(EmployeeGateways gateway) {
+        return new RemoveEmployeeInteractor(gateway);
     }
 
     @Bean
